@@ -1,6 +1,4 @@
-### 📄 **README.md**
 
-````markdown
 # 🧭 Django Tree Menu App
 
 A reusable **Django app** that implements a dynamic, tree-structured menu rendered via a **custom template tag** — following the technical requirements of a test assignment.
@@ -20,85 +18,68 @@ A reusable **Django app** that implements a dynamic, tree-structured menu render
 
 ---
 
-## 🛠️ Installation
+## 🛠️ Installation & Setup
 
 1. **Clone the repository**
    ```bash
    git clone https://github.com/smailxpy/django-tree-menu.git
    cd django-tree-menu
-````
+Create and activate a virtual environment
 
-2. **Create and activate a virtual environment**
+python -m venv venv
+source venv/bin/activate   # macOS/Linux
+venv\Scripts\activate      # Windows
 
-   ```bash
-   python -m venv venv
-   source venv/bin/activate   # macOS/Linux
-   venv\Scripts\activate      # Windows
-   ```
 
-3. **Install Django**
+Install dependencies
 
-   ```bash
-   pip install django
-   ```
+pip install -r requirements.txt
 
-4. **Run initial migrations**
 
-   ```bash
-   python manage.py makemigrations tree_menu
-   python manage.py migrate
-   ```
+Run initial migrations
 
-5. **Create a superuser**
+python manage.py makemigrations tree_menu
+python manage.py migrate
 
-   ```bash
-   python manage.py createsuperuser
-   ```
 
-6. **Run the server**
+Create a superuser
 
-   ```bash
-   python manage.py runserver
-   ```
+python manage.py createsuperuser
 
-7. **Open admin panel**
-   Go to: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
 
-   * Create a **Menu** (e.g., `main_menu`)
-   * Add several **Menu Items** with hierarchy (using the `parent` field)
+Run the server
 
----
+python manage.py runserver
 
-## 💡 Usage
+
+Open admin panel
+Go to: http://127.0.0.1:8000/admin
+
+Create a Menu (e.g., main_menu)
+
+Add several Menu Items with hierarchy (using the parent field)
+
+💡 Usage
 
 In your Django template:
 
-```django
 {% load menu_tags %}
 {% draw_menu 'main_menu' %}
-```
 
-Make sure your view uses `render(request, "template.html")` so the `request` context is available.
 
----
+Make sure your view uses render(request, "template.html") so the request context is available.
 
-## 🧩 Example Structure
+🧩 Example Structure
 
-**Menu:** `main_menu`
+Menu: main_menu
 
-| Title      | Parent  | URL / Named URL      | Order |
-| ---------- | ------- | -------------------- | ----- |
-| Home       | —       | `/`                  | 1     |
-| Catalog    | —       | `catalog:index`      | 2     |
-| Category A | Catalog | `catalog:category_a` | 1     |
-| Category B | Catalog | `catalog:category_b` | 2     |
-| About      | —       | `/about/`            | 3     |
-
----
-
-## 📂 Folder Structure
-
-```
+Title	Parent	URL / Named URL	Order
+Home	—	/	1
+Catalog	—	catalog:index	2
+Category A	Catalog	catalog:category_a	1
+Category B	Catalog	catalog:category_b	2
+About	—	/about/	3
+📂 Folder Structure
 tree_menu/
 ├── admin.py
 ├── apps.py
@@ -109,49 +90,39 @@ tree_menu/
     └── tree_menu/
         ├── menu.html
         └── menu_item.html
-```
 
----
+🧠 Technical Notes
 
-## 🧠 Technical Notes
+Only 1 SQL query is executed to load the entire menu.
 
-* Only **1 SQL query** is executed to load the entire menu.
-* The active menu item is matched by `request.path`.
-* Parent nodes of the active item are automatically expanded.
-* The first level of children under the active node is expanded too.
+The active menu item is matched by request.path.
 
----
+Parent nodes of the active item are automatically expanded.
 
-## 🧑‍💻 Author
+The first level of children under the active node is expanded too.
 
-**Ismoil Salohiddinov**
-GitHub: [@smailxpy](https://github.com/smailxpy)
-Telegram: [@clbrex](https://t.me/clbrex)
+Uses only Django + Python standard library (no third-party packages).
 
----
+🧑‍💻 Author
 
-## ⚖️ License
+Ismoil Salohiddinov
+GitHub: @smailxpy
+
+Telegram: @clbrex
+
+⚖️ License
 
 MIT License – free to use and modify.
 
-````
+📦 requirements.txt
+Django>=4.2,<5.0
+
 
 ---
 
-### 📌 Next Step
-1. Create this file in your project root:
-   ```bash
-   nano README.md
-````
-
-(or create it via VSCode)
-
-2. Paste the content above.
-3. Then commit & push:
-
-   ```bash
-   git add README.md
-   git commit -m "Add README.md"
-   git push
-   ```
-
+✅ Just paste this full text into your `README.md` file  
+Then run:
+```bash
+git add README.md
+git commit -m "Add README and requirements section"
+git push
